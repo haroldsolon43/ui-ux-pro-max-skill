@@ -172,6 +172,7 @@
     position: fixed; inset: 0 0 auto 0; z-index: 100;
     transition: background-color .35s var(--ease), border-color .35s var(--ease);
     border-bottom: 1px solid transparent; color: var(--on-dark);
+    padding-top: env(safe-area-inset-top, 0px);
   }
   header.site.scrolled {
     background: rgba(12, 10, 9, .72); border-bottom-color: var(--glass-border);
@@ -400,9 +401,10 @@
   .disclosure { margin-top: var(--space-4); font-size: .75rem; line-height: 1.7; max-width: 110ch; }
 
   /* ---------- Motion: staggered reveal (Standard tier, 400ms) ---------- */
+  /* Content is visible at rest; the rise plays only as an element approaches the viewport. */
   @media (prefers-reduced-motion: no-preference) {
-    .js .reveal { opacity: 0; transform: translateY(16px) scale(.985); transition: opacity .45s var(--ease), transform .45s var(--ease); transition-delay: var(--d, 0ms); }
-    .js .reveal.in { opacity: 1; transform: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px) scale(.985); } }
+    .reveal.in { animation: rise .5s var(--ease) backwards; animation-delay: var(--d, 0ms); }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -872,7 +874,6 @@
 
     // Staggered reveal — siblings in the same parent get a 60ms step (Standard motion tier).
     if (!reduce && 'IntersectionObserver' in window) {
-      document.documentElement.classList.add('js');
       var groups = new Map();
       document.querySelectorAll('.reveal').forEach(function (el) {
         var p = el.parentElement, i = groups.get(p) || 0;
@@ -881,8 +882,11 @@
       });
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { rootMargin: '0px 0px -8% 0px' });
-      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      }, { rootMargin: '0px 0px 20% 0px' });
+      // Anything already on screen at load stays put; only content below the fold animates.
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        if (el.getBoundingClientRect().top >= innerHeight) io.observe(el);
+      });
     }
 
     // Header glass on scroll + reading progress + funnel stage rail.
