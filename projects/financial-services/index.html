@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northmere Private Wealth — Wealth, managed with care</title>
+<meta name="description" content="Fee-only, fiduciary wealth management: planning, investments, retirement and estate strategy. Book a complimentary consultation.">
+
+<!--
+  Design system generated with:
+  search.py "financial services wealth premium trust" --design-system --variance 5 --motion 4 --density 3
+  Palette: premium black + gold | Type: Cormorant / Montserrat | Spacing: spacious
+  Section funnel (landing: funnel-3-step-conversion + pricing-focused-landing):
+    01 Discover (hero) → 02 Understand (problem) → 03 Explore (services + process)
+    → 04 Trust (proof, pricing, FAQ) → 05 Begin (consultation form)
+  Every stage ends with a mini-CTA; the final stage holds the main CTA.
+
+  IMAGE PLACEHOLDERS: every <div class="ph"> is a placeholder. Replace it with e.g.
+    <img src="hero.avif" width="1600" height="1200" alt="..." loading="lazy" class="ph-img">
+  keeping the same aspect-ratio so nothing shifts on load.
+
+  All names, figures, fees and testimonials are SAMPLE CONTENT — replace and have
+  them reviewed by compliance before publishing.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Palette — premium black + gold */
+    --ink: #0C0A09;
+    --ink-2: #1C1917;
+    --ink-3: #292524;
+    --stone: #44403C;
+    --gold: #A16207;          /* on light surfaces: 4.9:1 with white text */
+    --gold-hover: #854D0E;
+    --gold-soft: #E4B363;     /* on dark surfaces: ~10:1 on --ink */
+    --bg: #FAFAF9;
+    --card: #FFFFFF;
+    --muted: #F3F1EE;
+    --muted-fg: #57534E;
+    --border: #D6D3D1;
+    --on-dark: #F5F5F4;
+    --on-dark-muted: #C7C2BD;
+    --error: #B91C1C;
+    --error-on-dark: #FCA5A5;
+
+    /* Glass (used sparingly: nav, floating cards) */
+    --glass-bg: rgba(255, 255, 255, .06);
+    --glass-border: rgba(255, 255, 255, .14);
+
+    /* Spacing — spacious (density 3) */
+    --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px;
+    --space-5: 40px; --space-6: 64px; --space-7: 96px; --space-8: 128px;
+
+    --radius-sm: 10px; --radius: 18px; --radius-lg: 28px;
+    --shadow: 0 1px 2px rgba(12, 10, 9, .04), 0 12px 32px -12px rgba(12, 10, 9, .14);
+    --shadow-lg: 0 30px 60px -20px rgba(12, 10, 9, .35);
+
+    --serif: "Cormorant", "Times New Roman", serif;
+    --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 1rem; line-height: 1.7; font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; margin: 0 0 var(--space-3); letter-spacing: -.01em; text-wrap: balance; }
+  h1 { font-size: clamp(2.75rem, 6.4vw, 5.25rem); }
+  h2 { font-size: clamp(2.25rem, 4.4vw, 3.5rem); }
+  h3 { font-size: 1.625rem; font-weight: 600; line-height: 1.15; }
+  h1 em, h2 em { font-style: italic; color: var(--gold); }
+  .dark h1 em, .dark h2 em { color: var(--gold-soft); }
+  p { margin: 0 0 var(--space-3); text-wrap: pretty; }
+  a { color: inherit; }
+
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+  .dark :focus-visible { outline-color: var(--gold-soft); }
+
+  .skip-link { position: absolute; left: 16px; top: -64px; z-index: 200; background: var(--gold); color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; }
+  .skip-link:focus { top: 16px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .container { width: min(1200px, 100% - 32px); margin-inline: auto; }
+  section { padding-block: var(--space-8); position: relative; }
+  .dark { background: var(--ink); color: var(--on-dark); }
+  .tint { background: var(--muted); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: var(--space-3);
+    font-size: .75rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+  .dark .eyebrow { color: var(--gold-soft); }
+  .stage-num { font-variant-numeric: tabular-nums; }
+  .lead { font-size: 1.125rem; color: var(--muted-fg); max-width: 58ch; }
+  .dark .lead { color: var(--on-dark-muted); }
+  .section-head { max-width: 720px; margin-bottom: var(--space-6); }
+  .section-head.center { margin-inline: auto; text-align: center; }
+  .section-head.center .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1px solid transparent;
+    font: 600 .9375rem/1 var(--sans); letter-spacing: .01em; text-decoration: none; cursor: pointer; white-space: nowrap;
+    transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+  }
+  .btn svg { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: #fff; }
+  .btn-gold:hover { background: var(--gold-hover); }
+  .btn-light { background: var(--on-dark); color: var(--ink); }
+  .btn-light:hover { background: #fff; }
+  .btn-outline { border-color: var(--border); color: var(--ink); background: transparent; }
+  .btn-outline:hover { border-color: var(--ink); }
+  .dark .btn-outline { border-color: rgba(255,255,255,.28); color: var(--on-dark); }
+  .dark .btn-outline:hover { border-color: var(--on-dark); background: rgba(255,255,255,.04); }
+  .btn-sm { min-height: 44px; padding: 0 20px; font-size: .875rem; }
+
+  .link-cta {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+    font-weight: 600; font-size: .9375rem; color: var(--gold); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: border-color .2s var(--ease);
+  }
+  .link-cta:hover { border-bottom-color: currentColor; }
+  .link-cta svg { width: 16px; height: 16px; }
+  .dark .link-cta { color: var(--gold-soft); }
+
+  /* Mini-CTA strip that closes each funnel stage */
+  .stage-cta {
+    margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3);
+  }
+  .stage-cta p { margin: 0; color: var(--muted-fg); }
+  .dark .stage-cta { border-top-color: rgba(255,255,255,.12); }
+  .dark .stage-cta p { color: var(--on-dark-muted); }
+
+  /* ---------- Image placeholder ---------- */
+  .ph {
+    position: relative; overflow: hidden; border-radius: var(--radius-lg);
+    display: grid; place-items: center; text-align: center; padding: var(--space-4);
+    background:
+      repeating-linear-gradient(135deg, rgba(161,98,7,.07) 0 1px, transparent 1px 14px),
+      linear-gradient(160deg, #EDE9E4, #E2DDD6);
+    color: var(--stone); border: 1px dashed #B8B0A7;
+  }
+  .dark .ph, .ph.on-dark {
+    background:
+      repeating-linear-gradient(135deg, rgba(228,179,99,.08) 0 1px, transparent 1px 14px),
+      linear-gradient(160deg, #26221F, #171412);
+    color: var(--on-dark-muted); border-color: rgba(228,179,99,.35);
+  }
+  .ph-inner { display: grid; justify-items: center; gap: 6px; max-width: 30ch; }
+  .ph svg { width: 36px; height: 36px; opacity: .8; }
+  .ph strong { font-size: .8125rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .ph span { font-size: .8125rem; line-height: 1.5; }
+  .ph-img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+  .ph.round { border-radius: 50%; padding: 0; }
+  .ph.round svg { width: 22px; height: 22px; }
+
+  /* ---------- Header ---------- */
+  header.site {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background-color .35s var(--ease), border-color .35s var(--ease);
+    border-bottom: 1px solid transparent; color: var(--on-dark);
+  }
+  header.site.scrolled {
+    background: rgba(12, 10, 9, .72); border-bottom-color: var(--glass-border);
+    -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 76px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
+  .brand-mark { width: 36px; height: 36px; color: var(--gold-soft); }
+  .brand-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; letter-spacing: .02em; }
+  .nav ul { display: flex; gap: var(--space-5); list-style: none; margin: 0; padding: 0; }
+  .nav ul a { display: inline-block; padding: 12px 0; font-size: .875rem; font-weight: 500; text-decoration: none; color: var(--on-dark-muted); transition: color .2s; }
+  .nav ul a:hover, .nav ul a[aria-current="true"] { color: var(--on-dark); }
+  .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--gold-soft); transform-origin: 0 50%; transform: scaleX(0); }
+  .cta-short { display: none; }
+  @media (max-width: 960px) { .nav ul { display: none; } }
+  @media (max-width: 480px) { .cta-long { display: none; } .cta-short { display: inline; } .nav { min-height: 68px; } }
+
+  /* Funnel stage rail (large screens) */
+  .rail { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 90; list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .rail a { display: flex; align-items: center; justify-content: flex-end; gap: 12px; min-height: 32px; text-decoration: none; }
+  .rail .label {
+    font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; background: var(--ink); color: var(--on-dark);
+    opacity: 0; transform: translateX(6px); transition: opacity .2s var(--ease), transform .2s var(--ease);
+  }
+  .rail .dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--stone); background: var(--bg); transition: all .25s var(--ease); }
+  .rail a:hover .label, .rail a:focus-visible .label { opacity: 1; transform: none; }
+  .rail a[aria-current="step"] .dot { background: var(--gold); border-color: var(--gold); transform: scale(1.3); }
+  .rail.on-dark .dot { border-color: var(--on-dark-muted); background: transparent; }
+  .rail.on-dark .label { background: var(--on-dark); color: var(--ink); }
+  .rail.on-dark a[aria-current="step"] .dot { background: var(--gold-soft); border-color: var(--gold-soft); }
+  @media (max-width: 1320px) { .rail { display: none; } }
+
+  /* ---------- 01 Hero ---------- */
+  .hero { padding-top: calc(76px + var(--space-7)); padding-bottom: var(--space-7); overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -20% -10% auto auto; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+    background: radial-gradient(closest-side, rgba(228,179,99,.16), transparent 70%); pointer-events: none;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--space-6); align-items: center; position: relative; }
+  .hero .lead { font-size: 1.1875rem; margin-top: var(--space-4); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+  .hero-note { margin-top: var(--space-3); font-size: .8125rem; color: var(--on-dark-muted); display: flex; align-items: center; gap: 8px; }
+  .hero-note svg { width: 16px; height: 16px; color: var(--gold-soft); flex: none; }
+  .hero-visual { position: relative; }
+  .hero-visual .ph { aspect-ratio: 4 / 5; }
+  .glass {
+    background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius);
+    -webkit-backdrop-filter: blur(20px) saturate(160%); backdrop-filter: blur(20px) saturate(160%);
+    box-shadow: var(--shadow-lg);
+  }
+  .float-card { position: absolute; padding: var(--space-3) var(--space-4); color: var(--on-dark); background: rgba(28, 25, 23, .72); }
+  .float-card.a { left: -40px; bottom: 56px; width: 260px; }
+  .float-card.b { right: -24px; top: 40px; }
+  .float-card small { display: block; font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-muted); }
+  .float-card .big { font-family: var(--serif); font-size: 2rem; font-weight: 600; line-height: 1.1; }
+  .bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,.12); margin-top: 10px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 78%; border-radius: inherit; background: linear-gradient(90deg, var(--gold), var(--gold-soft)); }
+  .status { display: flex; align-items: center; gap: 10px; font-size: .875rem; font-weight: 500; }
+  .status .pulse { width: 8px; height: 8px; border-radius: 50%; background: #86EFAC; box-shadow: 0 0 0 4px rgba(134,239,172,.18); }
+
+  .trust { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgba(255,255,255,.1); display: grid; grid-template-columns: auto 1fr; gap: var(--space-5); align-items: center; }
+  .trust p { margin: 0; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-muted); }
+  .logos { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); }
+  .logos .ph { aspect-ratio: 3 / 1; border-radius: var(--radius-sm); padding: 8px; }
+  .logos .ph span { font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
+
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 520px; width: 100%; margin-inline: auto; }
+    .float-card.a { left: 12px; bottom: 16px; }
+    .float-card.b { right: 12px; top: 16px; }
+    .hero { padding-top: calc(76px + var(--space-5)); }
+    .trust { grid-template-columns: 1fr; gap: var(--space-3); }
+    .logos { grid-template-columns: repeat(3, 1fr); }
+    section { padding-block: var(--space-7); }
+  }
+  @media (max-width: 480px) {
+    .hero-actions .btn { flex: 1 1 100%; }
+    .float-card.a { width: auto; right: 12px; }
+    .float-card.b { display: none; }
+    .logos { grid-template-columns: repeat(2, 1fr); }
+    .logos .ph:nth-child(5) { display: none; }
+  }
+
+  /* ---------- 02 Understand (problem) ---------- */
+  .problem-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--space-6); align-items: start; }
+  .pain { list-style: none; margin: 0; padding: 0; counter-reset: pain; }
+  .pain li { display: grid; grid-template-columns: 64px 1fr; gap: var(--space-3); padding: var(--space-4) 0; border-top: 1px solid var(--border); }
+  .pain li:last-child { border-bottom: 1px solid var(--border); }
+  .pain .n { font-family: var(--serif); font-size: 2.5rem; line-height: 1; color: var(--gold); font-weight: 500; }
+  .pain h3 { margin-bottom: 6px; }
+  .pain p { margin: 0; color: var(--muted-fg); }
+  .problem .ph { aspect-ratio: 5 / 4; margin-top: var(--space-5); }
+  @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: var(--space-5); } .pain li { grid-template-columns: 48px 1fr; } }
+
+  /* ---------- 03 Explore (services bento + process) ---------- */
+  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-4); }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-5); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: var(--space-3);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+  }
+  .tile:hover { transform: translateY(-4px); border-color: #C4B8A8; box-shadow: 0 1px 2px rgba(12,10,9,.04), 0 24px 48px -16px rgba(12,10,9,.18); }
+  .tile p { color: var(--muted-fg); margin: 0; }
+  .tile .icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--muted); color: var(--gold); }
+  .tile .icon svg { width: 24px; height: 24px; }
+  .tile.feature { grid-column: span 7; grid-row: span 2; padding: 0; overflow: hidden; }
+  .tile.feature .ph { border-radius: 0; border: 0; border-bottom: 1px dashed #B8B0A7; aspect-ratio: 16 / 9; }
+  .tile.feature .body { padding: var(--space-5); display: grid; gap: var(--space-3); }
+  .tile.side { grid-column: span 5; }
+  .tile.third { grid-column: span 6; }
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .ticks li { display: flex; gap: 10px; align-items: flex-start; font-size: .9375rem; }
+  .ticks svg { width: 18px; height: 18px; flex: none; margin-top: 4px; color: var(--gold); }
+  .dark .ticks svg { color: var(--gold-soft); }
+  @media (max-width: 960px) { .tile.feature, .tile.side, .tile.third { grid-column: 1 / -1; grid-row: auto; } .tile { padding: var(--space-4); } .tile.feature .body { padding: var(--space-4); } }
+
+  .process { margin-top: var(--space-8); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: center; }
+  .process .ph { aspect-ratio: 4 / 3; }
+  .steps { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-4); counter-reset: step; }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 48px 1fr; gap: var(--space-3); }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero); width: 48px; height: 48px; border-radius: 50%;
+    display: grid; place-items: center; border: 1px solid var(--gold); color: var(--gold);
+    font: 600 .8125rem/1 var(--sans); letter-spacing: .06em;
+  }
+  .steps h3 { font-size: 1.375rem; margin-bottom: 4px; }
+  .steps p { margin: 0; color: var(--muted-fg); }
+  @media (max-width: 900px) { .process { grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-7); } }
+
+  /* ---------- 04 Trust (proof, pricing, FAQ) ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); }
+  .stat { padding: var(--space-5) var(--space-4); }
+  .stat + .stat { border-left: 1px solid rgba(255,255,255,.12); }
+  .stat .v { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1; color: var(--on-dark); }
+  .stat .v sup { font-size: .45em; color: var(--gold-soft); }
+  .stat .k { margin-top: 10px; font-size: .875rem; color: var(--on-dark-muted); }
+  @media (max-width: 900px) { .stats { grid-template-columns: 1fr 1fr; } .stat:nth-child(3) { border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.12); } }
+  @media (max-width: 480px) { .stat { padding: var(--space-4) var(--space-3); } }
+
+  .quotes { margin-top: var(--space-7); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  figure.q { margin: 0; padding: var(--space-5) var(--space-4); display: flex; flex-direction: column; gap: var(--space-4); }
+  figure.q .mark { font-family: var(--serif); font-size: 4rem; line-height: .5; color: var(--gold-soft); height: 24px; }
+  figure.q blockquote { margin: 0; font-family: var(--serif); font-size: 1.375rem; line-height: 1.4; font-weight: 500; }
+  figure.q figcaption { margin-top: auto; display: flex; align-items: center; gap: var(--space-3); }
+  figure.q .ph.round { width: 52px; height: 52px; flex: none; }
+  figure.q strong { display: block; font-weight: 600; }
+  figure.q small { color: var(--on-dark-muted); font-size: .8125rem; }
+  @media (max-width: 960px) { .quotes { grid-template-columns: 1fr; } }
+
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); align-items: stretch; }
+  .plan { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); box-shadow: var(--shadow); position: relative; }
+  .plan h3 { margin: 0; }
+  .plan .who { color: var(--muted-fg); font-size: .9375rem; margin: 0; }
+  .plan .price { font-family: var(--serif); font-size: 3.25rem; font-weight: 500; line-height: 1; margin-top: var(--space-2); }
+  .plan .price small { font-family: var(--sans); font-size: .875rem; font-weight: 500; color: var(--muted-fg); }
+  .plan .example { margin: 0; font-size: .8125rem; color: var(--muted-fg); padding: 10px 12px; background: var(--muted); border-radius: var(--radius-sm); }
+  .plan .ticks { margin: var(--space-2) 0 var(--space-3); flex: 1; align-content: start; }
+  .plan.popular { background: var(--ink); color: var(--on-dark); border-color: var(--ink); transform: translateY(-12px); box-shadow: var(--shadow-lg); }
+  .plan.popular .who, .plan.popular .price small { color: var(--on-dark-muted); }
+  .plan.popular .example { background: rgba(255,255,255,.07); color: var(--on-dark-muted); }
+  .plan.popular .ticks svg { color: var(--gold-soft); }
+  .badge { position: absolute; top: -13px; left: var(--space-4); background: var(--gold-soft); color: var(--ink); font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+  .plan .btn { width: 100%; }
+  .fine { margin-top: var(--space-4); font-size: .8125rem; color: var(--muted-fg); text-align: center; }
+  @media (max-width: 960px) { .pricing { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } .plan.popular { transform: none; } }
+
+  .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: var(--space-6); align-items: start; }
+  .faq details { border-top: 1px solid var(--border); }
+  .faq details:last-child { border-bottom: 1px solid var(--border); }
+  .faq summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+    min-height: 44px; padding: var(--space-4) 0; font-family: var(--serif); font-size: 1.375rem; font-weight: 600; line-height: 1.25;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .pm { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; flex: none; transition: transform .3s var(--ease), background-color .3s; }
+  .faq summary .pm svg { width: 14px; height: 14px; }
+  .faq details[open] .pm { transform: rotate(45deg); background: var(--ink); color: #fff; border-color: var(--ink); }
+  .faq details p { color: var(--muted-fg); margin: 0; padding: 0 var(--space-6) var(--space-4) 0; }
+  @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; gap: var(--space-4); } .faq details p { padding-right: 0; } }
+
+  /* ---------- 05 Begin (final CTA) ---------- */
+  .final { overflow: hidden; }
+  .final::before { content: ""; position: absolute; left: -15%; bottom: -40%; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; background: radial-gradient(closest-side, rgba(228,179,99,.14), transparent 70%); pointer-events: none; }
+  .final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start; position: relative; }
+  .final .ph { aspect-ratio: 16 / 10; margin-top: var(--space-5); }
+  .advisor { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+  .advisor .ph.round { width: 56px; height: 56px; }
+  .advisor strong { display: block; }
+  .advisor small { color: var(--on-dark-muted); }
+
+  form.consult { padding: var(--space-5); display: grid; gap: var(--space-4); background: rgba(28, 25, 23, .7); }
+  form.consult h3 { margin: 0; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .field { display: grid; gap: 8px; align-content: start; }
+  .field label { font-size: .8125rem; font-weight: 600; letter-spacing: .04em; }
+  .field .opt { font-weight: 400; color: var(--on-dark-muted); }
+  .field input, .field select {
+    font: inherit; color: var(--on-dark); width: 100%; min-height: 50px; padding: 12px 14px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.2); border-radius: 12px;
+    transition: border-color .2s, background-color .2s;
+  }
+  .field select option { color: var(--ink); }
+  .field input:hover, .field select:hover { border-color: rgba(255,255,255,.4); }
+  .field input:focus-visible, .field select:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; border-color: var(--gold-soft); background: rgba(255,255,255,.08); }
+  .field [aria-invalid="true"] { border-color: var(--error-on-dark); }
+  .field .error { color: var(--error-on-dark); font-size: .8125rem; font-weight: 500; }
+  .field .error:empty { display: none; }
+  .check { display: flex; gap: 12px; align-items: flex-start; font-size: .8125rem; color: var(--on-dark-muted); }
+  .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--gold-soft); flex: none; }
+  .form-status { margin: 0; font-weight: 600; color: #86EFAC; }
+  .form-status:empty { display: none; }
+  .form-foot { display: flex; align-items: center; gap: 8px; margin: 0; font-size: .8125rem; color: var(--on-dark-muted); }
+  .form-foot svg { width: 16px; height: 16px; color: var(--gold-soft); flex: none; }
+  @media (max-width: 900px) { .final-grid { grid-template-columns: 1fr; gap: var(--space-5); } }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } form.consult { padding: var(--space-4); } }
+
+  /* ---------- Footer ---------- */
+  footer.site { background: var(--ink); color: var(--on-dark-muted); padding-block: var(--space-6) var(--space-5); border-top: 1px solid rgba(255,255,255,.08); font-size: .875rem; }
+  .foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); padding-bottom: var(--space-5); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .foot-top .brand { color: var(--on-dark); }
+  .foot-top ul { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); list-style: none; margin: 0; padding: 0; }
+  .foot-top ul a { display: inline-block; padding: 12px 0; text-decoration: none; }
+  .foot-top ul a:hover { color: var(--on-dark); }
+  .disclosure { margin-top: var(--space-4); font-size: .75rem; line-height: 1.7; max-width: 110ch; }
+
+  /* ---------- Motion: staggered reveal (Standard tier, 400ms) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .reveal { opacity: 0; transform: translateY(16px) scale(.985); transition: opacity .45s var(--ease), transform .45s var(--ease); transition-delay: var(--d, 0ms); }
+    .js .reveal.in { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Reusable placeholder icon -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+</svg>
+
+<header class="site" id="header">
+  <div class="container nav">
+    <a class="brand" href="#discover" aria-label="Northmere Private Wealth, home">
+      <svg class="brand-mark" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 3 32 11v14L18 33 4 25V11L18 3Z"/><path d="M11 24V12l14 12V12"/></svg>
+      <span class="brand-name">Northmere</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#explore">Services</a></li>
+        <li><a href="#process">Our process</a></li>
+        <li><a href="#pricing">Fees</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-light btn-sm" href="#begin"><span class="cta-long">Book a consultation</span><span class="cta-short">Book a call</span></a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<!-- Funnel stage rail -->
+<nav aria-label="Page stages">
+  <ol class="rail on-dark" id="rail">
+    <li><a href="#discover"><span class="label">01 Discover</span><span class="dot"></span></a></li>
+    <li><a href="#understand"><span class="label">02 Understand</span><span class="dot"></span></a></li>
+    <li><a href="#explore"><span class="label">03 Explore</span><span class="dot"></span></a></li>
+    <li><a href="#trust"><span class="label">04 Trust</span><span class="dot"></span></a></li>
+    <li><a href="#begin"><span class="label">05 Begin</span><span class="dot"></span></a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+  <!-- ============ 01 DISCOVER — Awareness ============ -->
+  <section class="hero dark" id="discover" data-stage aria-labelledby="hero-h">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal"><span class="stage-num">01</span>&nbsp;Private wealth management</span>
+          <h1 id="hero-h" class="reveal">Wealth, managed with the <em>care</em> it took to build.</h1>
+          <p class="lead reveal">Fee-only, fiduciary advice for families and founders. One dedicated advisor, one coordinated plan across investments, tax, retirement and legacy.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-gold" href="#begin">Book a free consultation <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-outline" href="#explore">Explore our services</a>
+          </div>
+          <p class="hero-note reveal"><svg aria-hidden="true"><use href="#i-shield"/></svg>Fiduciary by law — we're paid only by you, never by commission.</p>
+        </div>
+
+        <div class="hero-visual reveal">
+          <!-- IMAGE PLACEHOLDER: hero portrait -->
+          <div class="ph" role="img" aria-label="Image placeholder: advisor in conversation with a client, warm natural light">
+            <div class="ph-inner">
+              <svg aria-hidden="true"><use href="#i-image"/></svg>
+              <strong>Hero image</strong>
+              <span>Advisor with client, warm natural light · 1200×1500 · 4:5</span>
+            </div>
+          </div>
+          <div class="float-card glass b" aria-hidden="true">
+            <div class="status"><span class="pulse"></span>Plan on track</div>
+          </div>
+          <div class="float-card glass a" aria-hidden="true">
+            <small>Retirement goal</small>
+            <div class="big">78% funded</div>
+            <div class="bar"><i></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust reveal">
+        <p>As featured in</p>
+        <div class="logos">
+          <div class="ph on-dark" role="img" aria-label="Logo placeholder 1"><span>Logo</span></div>
+          <div class="ph on-dark" role="img" aria-label="Logo placeholder 2"><span>Logo</span></div>
+          <div class="ph on-dark" role="img" aria-label="Logo placeholder 3"><span>Logo</span></div>
+          <div class="ph on-dark" role="img" aria-label="Logo placeholder 4"><span>Logo</span></div>
+          <div class="ph on-dark" role="img" aria-label="Logo placeholder 5"><span>Logo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 UNDERSTAND — Interest (problem) ============ -->
+  <section class="problem" id="understand" data-stage aria-labelledby="problem-h">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <span class="eyebrow reveal"><span class="stage-num">02</span>&nbsp;The challenge</span>
+          <h2 id="problem-h" class="reveal">Success brings <em>complexity</em>. Most advice doesn't keep up.</h2>
+          <p class="lead reveal">As wealth grows, decisions multiply — and they rarely sit in one place. Without a single plan, small gaps quietly compound.</p>
+          <!-- IMAGE PLACEHOLDER: supporting lifestyle image -->
+          <div class="ph reveal" role="img" aria-label="Image placeholder: family reviewing documents at a kitchen table">
+            <div class="ph-inner">
+              <svg aria-hidden="true"><use href="#i-image"/></svg>
+              <strong>Supporting image</strong>
+              <span>Family reviewing plans at home · 1200×960 · 5:4</span>
+            </div>
+          </div>
+        </div>
+
+        <ol class="pain">
+          <li class="reveal">
+            <span class="n" aria-hidden="true">01</span>
+            <div><h3>Advice in silos</h3><p>Your accountant, attorney and broker each see one piece. Nobody owns the whole picture — so no one spots the conflicts.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="n" aria-hidden="true">02</span>
+            <div><h3>Hidden costs</h3><p>Layered fund fees, commissions and tax drag can quietly erode returns you never see on a statement.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="n" aria-hidden="true">03</span>
+            <div><h3>No time to plan</h3><p>Between running a business and a family, the long-term plan keeps slipping to "next quarter."</p></div>
+          </li>
+          <li class="reveal">
+            <span class="n" aria-hidden="true">04</span>
+            <div><h3>Uncertain legacy</h3><p>Without a clear estate strategy, what you've built may not reach the people and causes you intend.</p></div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="stage-cta reveal">
+        <p>There's a simpler way to manage everything you've built.</p>
+        <a class="link-cta" href="#explore">See how we bring it together <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 EXPLORE — Consideration (solution + process) ============ -->
+  <section class="tint" id="explore" data-stage aria-labelledby="explore-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="stage-num">03</span>&nbsp;Our services</span>
+        <h2 id="explore-h" class="reveal">One advisor. One plan. <em>Every</em> part of your financial life.</h2>
+        <p class="lead reveal">Four disciplines, coordinated by a single team that knows your goals as well as your numbers.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile feature reveal">
+          <!-- IMAGE PLACEHOLDER: service feature -->
+          <div class="ph" role="img" aria-label="Image placeholder: advisor presenting a financial plan on a tablet">
+            <div class="ph-inner">
+              <svg aria-hidden="true"><use href="#i-image"/></svg>
+              <strong>Feature image</strong>
+              <span>Advisor presenting a plan · 1600×900 · 16:9</span>
+            </div>
+          </div>
+          <div class="body">
+            <h3>Comprehensive wealth planning</h3>
+            <p>A living plan that connects cash flow, investments, tax, insurance and estate — reviewed with you at least twice a year.</p>
+            <ul class="ticks">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Goal-based cash-flow modelling</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Coordination with your CPA and attorney</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Secure client portal with real-time reporting</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tile side reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg></div>
+          <h3>Investment management</h3>
+          <p>Globally diversified, low-cost portfolios built around your risk tolerance, with tax-aware rebalancing.</p>
+          <a class="link-cta" href="#pricing">View fees <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="tile side reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Retirement income</h3>
+          <p>Withdrawal strategies, Social Security timing and pension decisions that make your savings last.</p>
+          <a class="link-cta" href="#faq">Common questions <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <article class="tile third reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m16 15 2 2 4-4"/></svg></div>
+          <h3>Tax strategy</h3>
+          <p>Year-round planning — asset location, loss harvesting and charitable giving — not just an April scramble.</p>
+        </article>
+
+        <article class="tile third reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></div>
+          <h3>Estate &amp; legacy</h3>
+          <p>Trust structures, beneficiary reviews and family governance so your wealth transfers the way you intend.</p>
+        </article>
+      </div>
+
+      <div class="process" id="process">
+        <!-- IMAGE PLACEHOLDER: process / office -->
+        <div class="ph reveal" role="img" aria-label="Image placeholder: calm, modern client meeting room">
+          <div class="ph-inner">
+            <svg aria-hidden="true"><use href="#i-image"/></svg>
+            <strong>Process image</strong>
+            <span>Client meeting room or advisor team · 1200×900 · 4:3</span>
+          </div>
+        </div>
+        <div>
+          <span class="eyebrow reveal">How it works</span>
+          <h2 class="reveal">From first call to lifelong partnership.</h2>
+          <ol class="steps">
+            <li class="reveal"><div><h3>Discovery call</h3><p>A complimentary 30-minute conversation about where you are, where you're headed and whether we're the right fit.</p></div></li>
+            <li class="reveal"><div><h3>Your personal plan</h3><p>Within three weeks we deliver a written plan with clear recommendations and a transparent fee quote.</p></div></li>
+            <li class="reveal"><div><h3>Ongoing stewardship</h3><p>We implement, monitor and adjust — with proactive check-ins whenever life or markets change.</p></div></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="stage-cta reveal">
+        <p>Curious what a plan would look like for you?</p>
+        <a class="btn btn-gold btn-sm" href="#begin">Start with a discovery call <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 TRUST — Evaluation (proof) ============ -->
+  <section class="dark" id="trust" data-stage aria-labelledby="trust-h">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal"><span class="stage-num">04</span>&nbsp;Why clients stay</span>
+        <h2 id="trust-h" class="reveal">Trusted by families for <em>generations</em>.</h2>
+      </div>
+
+      <div class="stats reveal" role="list">
+        <div class="stat" role="listitem"><div class="v">$4.2<sup>B</sup></div><div class="k">Assets under advisement*</div></div>
+        <div class="stat" role="listitem"><div class="v">1,200<sup>+</sup></div><div class="k">Families served*</div></div>
+        <div class="stat" role="listitem"><div class="v">98<sup>%</sup></div><div class="k">Client retention rate*</div></div>
+        <div class="stat" role="listitem"><div class="v">24<sup>yrs</sup></div><div class="k">Independent &amp; fee-only*</div></div>
+      </div>
+
+      <!-- SAMPLE testimonials — replace with real, compliant client testimonials -->
+      <div class="quotes">
+        <figure class="q glass reveal">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>For the first time, our investments, taxes and estate plan actually talk to each other. It feels like having a family CFO.</blockquote>
+          <figcaption>
+            <div class="ph round on-dark" role="img" aria-label="Client photo placeholder"><svg aria-hidden="true"><use href="#i-user"/></svg></div>
+            <div><strong>Elena &amp; Marcus T.</strong><small>Clients since 2016</small></div>
+          </figcaption>
+        </figure>
+        <figure class="q glass reveal">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>They helped me plan the sale of my company two years before it happened. That foresight made all the difference.</blockquote>
+          <figcaption>
+            <div class="ph round on-dark" role="img" aria-label="Client photo placeholder"><svg aria-hidden="true"><use href="#i-user"/></svg></div>
+            <div><strong>David K.</strong><small>Founder, clients since 2019</small></div>
+          </figcaption>
+        </figure>
+        <figure class="q glass reveal">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>Clear fees, no product pushing, and an advisor who picks up the phone. Retirement finally feels calm.</blockquote>
+          <figcaption>
+            <div class="ph round on-dark" role="img" aria-label="Client photo placeholder"><svg aria-hidden="true"><use href="#i-user"/></svg></div>
+            <div><strong>Margaret L.</strong><small>Retired physician, client since 2012</small></div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 TRUST — Evaluation (transparent pricing) ============ -->
+  <section id="pricing" aria-labelledby="pricing-h">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">Transparent fees</span>
+        <h2 id="pricing-h" class="reveal">Simple, <em>fee-only</em> pricing.</h2>
+        <p class="lead reveal" style="margin-inline:auto">One annual fee based on assets we manage. No commissions, no hidden product fees, no surprises.</p>
+      </div>
+
+      <div class="pricing">
+        <article class="plan reveal">
+          <h3>Essentials</h3>
+          <p class="who">For professionals building wealth</p>
+          <div class="price">1.00%<small> / year</small></div>
+          <p class="example">Example: $250,000 invested = $2,500 per year</p>
+          <ul class="ticks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dedicated advisor</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Managed portfolio &amp; rebalancing</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Annual financial plan review</li>
+          </ul>
+          <a class="btn btn-outline" href="#begin">Get started</a>
+        </article>
+
+        <article class="plan popular reveal">
+          <span class="badge">Most chosen</span>
+          <h3>Private</h3>
+          <p class="who">For families with complex needs</p>
+          <div class="price">0.75%<small> / year</small></div>
+          <p class="example">Example: $1,000,000 invested = $7,500 per year</p>
+          <ul class="ticks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Everything in Essentials</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Year-round tax strategy</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Estate &amp; beneficiary planning</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Semi-annual in-person reviews</li>
+          </ul>
+          <a class="btn btn-gold" href="#begin">Book a consultation</a>
+        </article>
+
+        <article class="plan reveal">
+          <h3>Family Office</h3>
+          <p class="who">For multi-generational wealth</p>
+          <div class="price">Custom</div>
+          <p class="example">Typically from $10M in investable assets</p>
+          <ul class="ticks">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Everything in Private</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Family governance &amp; education</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Private market &amp; alternatives access</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dedicated team of specialists</li>
+          </ul>
+          <a class="btn btn-outline" href="#begin">Talk to us</a>
+        </article>
+      </div>
+      <p class="fine reveal">Fees are billed quarterly in arrears and decrease on assets above $2M. Full details in our Form ADV.</p>
+    </div>
+  </section>
+
+  <!-- ============ 04 TRUST — Objection handling (FAQ) ============ -->
+  <section class="tint" id="faq" aria-labelledby="faq-h">
+    <div class="container faq-grid">
+      <div>
+        <span class="eyebrow reveal">Questions</span>
+        <h2 id="faq-h" class="reveal">Everything you'd want to know <em>before</em> we talk.</h2>
+        <p class="lead reveal">Still unsure? A consultation is free and there's no obligation.</p>
+        <a class="link-cta reveal" href="#begin">Ask us directly <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="faq">
+        <details class="reveal" open>
+          <summary>Are you a fiduciary?<span class="pm" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Yes — at all times, on every account. We're legally required to act in your best interest, and we accept no commissions or referral payments.</p>
+        </details>
+        <details class="reveal">
+          <summary>How do you get paid?<span class="pm" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Only through the transparent annual fee shown above. We don't earn more by recommending any particular product.</p>
+        </details>
+        <details class="reveal">
+          <summary>Is there an account minimum?<span class="pm" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Our Essentials service starts at $250,000 in investable assets. If you're not there yet, we're happy to point you to good resources.</p>
+        </details>
+        <details class="reveal">
+          <summary>Where is my money held?<span class="pm" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Your assets stay in your name at an independent, qualified custodian. We have authority to manage investments, but never to withdraw funds.</p>
+        </details>
+        <details class="reveal">
+          <summary>Can I leave at any time?<span class="pm" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Yes. There are no lock-ins or exit fees — your accounts remain yours, whether you stay with us or not.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 BEGIN — Action (main CTA) ============ -->
+  <section class="final dark" id="begin" data-stage aria-labelledby="begin-h">
+    <div class="container final-grid">
+      <div>
+        <span class="eyebrow reveal"><span class="stage-num">05</span>&nbsp;Begin</span>
+        <h2 id="begin-h" class="reveal">Your first conversation is <em>on us</em>.</h2>
+        <p class="lead reveal">Book a complimentary 30-minute consultation. You'll leave with clarity on your next steps — whether or not we work together.</p>
+        <ul class="ticks reveal" style="margin-top:var(--space-4)">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>No obligation, no sales pressure</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Meet in person or by video</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Response within one business day</li>
+        </ul>
+        <div class="advisor reveal">
+          <div class="ph round" role="img" aria-label="Advisor headshot placeholder"><svg aria-hidden="true"><use href="#i-user"/></svg></div>
+          <div><strong>Your advisor, by name</strong><small>Senior Wealth Advisor · placeholder</small></div>
+        </div>
+      </div>
+
+      <form class="consult glass reveal" id="consult-form" novalidate aria-labelledby="form-h">
+        <h3 id="form-h">Request your consultation</h3>
+        <div class="row">
+          <div class="field">
+            <label for="fname">First name</label>
+            <input id="fname" name="fname" autocomplete="given-name" required aria-describedby="fname-err">
+            <span class="error" id="fname-err" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="lname">Last name</label>
+            <input id="lname" name="lname" autocomplete="family-name" required aria-describedby="lname-err">
+            <span class="error" id="lname-err" role="alert"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-err">
+          <span class="error" id="email-err" role="alert"></span>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="phone">Phone <span class="opt">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="assets">Investable assets</label>
+            <select id="assets" name="assets">
+              <option>Under $250k</option>
+              <option>$250k – $1M</option>
+              <option selected>$1M – $5M</option>
+              <option>$5M – $10M</option>
+              <option>$10M+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="goal">Main goal</label>
+          <select id="goal" name="goal">
+            <option>Plan for retirement</option>
+            <option>Grow and protect investments</option>
+            <option>Reduce taxes</option>
+            <option>Estate &amp; legacy planning</option>
+            <option>Business sale or liquidity event</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" name="consent" id="consent" required aria-describedby="consent-err">I agree to be contacted about my enquiry. We never share your details.</label>
+        <span class="error" id="consent-err" role="alert" style="color:var(--error-on-dark);font-size:.8125rem"></span>
+        <button class="btn btn-gold" type="submit">Request consultation <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-foot"><svg aria-hidden="true"><use href="#i-shield"/></svg>Encrypted and confidential.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="foot-top">
+      <a class="brand" href="#discover" aria-label="Northmere Private Wealth, back to top">
+        <svg class="brand-mark" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 3 32 11v14L18 33 4 25V11L18 3Z"/><path d="M11 24V12l14 12V12"/></svg>
+        <span class="brand-name">Northmere</span>
+      </a>
+      <ul>
+        <li><a href="#explore">Services</a></li>
+        <li><a href="#pricing">Fees</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#">Form ADV</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+    <p class="disclosure">
+      * Sample figures for demonstration only. Northmere Private Wealth is a fictional firm used in this template.
+      Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.
+      Advisory services would be offered through a registered investment adviser; registration does not imply a certain level of skill or training.
+      Testimonials shown are illustrative and may not be representative of other clients' experience.
+    </p>
+    <p class="disclosure">© 2026 Northmere Private Wealth. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Staggered reveal — siblings in the same parent get a 60ms step (Standard motion tier).
+    if (!reduce && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('js');
+      var groups = new Map();
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        var p = el.parentElement, i = groups.get(p) || 0;
+        el.style.setProperty('--d', Math.min(i, 6) * 60 + 'ms');
+        groups.set(p, i + 1);
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    }
+
+    // Header glass on scroll + reading progress + funnel stage rail.
+    var header = document.getElementById('header');
+    var bar = document.getElementById('progress');
+    var rail = document.getElementById('rail');
+    var links = rail.querySelectorAll('a');
+    var stages = Array.prototype.slice.call(document.querySelectorAll('[data-stage]'));
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+      header.classList.toggle('scrolled', y > 24);
+      bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+      var mid = y + innerHeight * 0.45, current = stages[0];
+      stages.forEach(function (s) { if (s.offsetTop <= mid) current = s; });
+      links.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + current.id) a.setAttribute('aria-current', 'step');
+        else a.removeAttribute('aria-current');
+      });
+      // Rail sits over the section at viewport middle — switch contrast on dark sections.
+      var under = document.elementFromPoint(innerWidth - 40, innerHeight / 2);
+      var sec = under && under.closest('section, footer');
+      rail.classList.toggle('on-dark', !!sec && (sec.classList.contains('dark') || sec.tagName === 'FOOTER'));
+    }
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+
+    // Consultation form — inline validation beside each field, focus first error.
+    var form = document.getElementById('consult-form');
+    var status = document.getElementById('form-status');
+    var rules = {
+      fname: function (v) { return v ? '' : 'Please enter your first name.'; },
+      lname: function (v) { return v ? '' : 'Please enter your last name.'; },
+      email: function (v) {
+        if (!v) return 'Please enter your email address.';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Please enter a valid email, e.g. name@example.com.';
+      }
+    };
+    function check(id) {
+      var el = document.getElementById(id), err = document.getElementById(id + '-err'), msg;
+      msg = id === 'consent' ? (el.checked ? '' : 'Please confirm we may contact you.') : rules[id](el.value.trim());
+      err.textContent = msg;
+      if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+      return !msg;
+    }
+    Object.keys(rules).forEach(function (id) {
+      document.getElementById(id).addEventListener('blur', function () { check(id); });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.textContent = '';
+      var bad = ['fname', 'lname', 'email', 'consent'].filter(function (id) { return !check(id); });
+      if (bad.length) { document.getElementById(bad[0]).focus(); return; }
+      // Demo only: connect to your CRM / scheduling endpoint.
+      status.textContent = 'Thank you — an advisor will be in touch within one business day.';
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>
